@@ -86,6 +86,12 @@
   <!-- 一个按钮。onclick 意思是"用户点击时，执行 sayHello 这个函数" -->
   <button onclick="sayHello()">点我一下</button>
 
+  <!-- 这一行文字有个 id 叫 myText，JS 靠这个 id 找到它 -->
+  <p id="myText">这是还没被改过的文字</p>
+
+  <!-- 第二个按钮，点击会执行 changeText 函数 -->
+  <button onclick="changeText()">点我改上面的文字</button>
+
   <!-- ===== JavaScript 从这里开始 ===== -->
   <!-- <script> 标签里写的是 JS 代码，让网页"动起来" -->
   <script>
@@ -93,6 +99,14 @@
     function sayHello() {
       // alert() 会弹出一个提示框
       alert("星沉爱意落幕");
+    }
+
+    // 第二个函数：改页面上某个元素的文字
+    function changeText() {
+      // let 是"声明变量"，把找到的元素存进变量 text 里
+      let text = document.getElementById("myText");
+      // .innerText 就是"这个元素显示的文字"，= 号是"改成"
+      text.innerText = "星沉爱意落幕";
     }
   </script>
   <!-- ===== JavaScript 到这里结束 ===== -->
