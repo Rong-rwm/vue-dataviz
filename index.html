@@ -76,6 +76,11 @@
   <h2>用 JS 循环生成的列表</h2>
   <ul id="skillList"></ul>
 
+  <!-- if/else 和对象演示 -->
+  <h2>条件判断和对象</h2>
+  <p id="greeting"></p>
+  <p id="aboutMe"></p>
+
   <!-- 一个可以点击的链接，href 是跳转地址 -->
   <p>我的 GitHub：
     <a href="https://github.com/Rong-rwm" target="_blank">github.com/Rong-rwm</a>
@@ -126,6 +131,34 @@
     }
     // 把拼好的 HTML 一次性塞进那个空的 <ul> 里
     document.getElementById("skillList").innerHTML = listHtml;
+
+    // ===== 3. if/else：条件判断（"如果...就...否则..."） =====
+    // new Date().getHours() 拿到现在是几点（0 到 23）
+    let hour = new Date().getHours();
+    let greeting = "";
+    if (hour < 12) {
+      // 如果现在是上午
+      greeting = "早上好";
+    } else if (hour < 18) {
+      // 否则如果现在是下午
+      greeting = "下午好";
+    } else {
+      // 否则（就是晚上）
+      greeting = "晚上好";
+    }
+    document.getElementById("greeting").innerText = greeting + "，容伟铭！";
+
+    // ===== 4. 对象：一个带"标签"的数据包 =====
+    // 用大括号 {} 包起来，"标签: 值"用逗号隔开
+    let me = {
+      name: "容伟铭",
+      direction: "前端",
+      skill: "Vue3",
+      girl:"nobody"
+    };
+    // 用点号 . 取出对象里的某个值
+    document.getElementById("aboutMe").innerText =
+      me.name + "，方向是" + me.direction + "，主攻" + me.skill + "，喜欢的女孩是" + me.girl;
   </script>
   <!-- ===== JavaScript 到这里结束 ===== -->
 </body>
