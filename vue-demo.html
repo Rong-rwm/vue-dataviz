@@ -2,41 +2,54 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Vue3 第一个例子</title>
-  <!-- 加载 Vue3（本地文件，已经帮你下载好了） -->
+  <title>Vue3 学习</title>
+  <!-- 加载 Vue3（本地文件） -->
   <script src="vue.global.js"></script>
 </head>
 
 <body>
-  <!-- Vue 管的是这个 #app 里面的内容 -->
   <div id="app">
     <!-- {{ }} 双花括号 = 显示"数据" -->
     <h1>{{ message }}</h1>
-
-    <!-- @click = 点击事件（相当于之前的 onclick） -->
     <button @click="changeMessage">点我改文字</button>
+
+    <!-- v-for：循环渲染一个列表（对应你学的 for 循环，但一行搞定） -->
+    <h2>v-for 循环渲染</h2>
+    <ul>
+      <li v-for="skill in skills">{{ skill }}</li>
+    </ul>
+
+    <!-- v-if：条件显示（对应你学的 if/else） -->
+    <h2>v-if 条件显示</h2>
+    <p v-if="showSecret">👀 这是隐藏的文字，点下面按钮会消失/出现</p>
+    <button @click="toggleSecret">显示/隐藏</button>
   </div>
 
   <script>
-    // 从 Vue 里取出 createApp 这个工具
     const { createApp } = Vue;
 
-    // 创建一个 Vue 应用
     createApp({
-      // data() 里放"数据"——重点：这里的值改了，页面会自动更新
+      // data() 里放"数据"——值改了，页面会自动更新
       data() {
         return {
-          message: "星沉爱意落幕"
+          message: "星沉爱意落幕",
+          // 一个数组，v-for 会遍历它
+          skills: ["HTML", "CSS", "JavaScript", "Vue3","React"],
+          // 一个开关：true 显示，false 隐藏
+          showSecret: true
         };
       },
       // methods 里放"方法"（函数）
       methods: {
         changeMessage() {
-          // 只要改数据，页面自动变！不用 getElementById
           this.message = "文字被 Vue 自动更新了！";
+        },
+        toggleSecret() {
+          // ! 表示"反过来"：true 变 false，false 变 true
+          this.showSecret = !this.showSecret;
         }
       }
-    }).mount("#app"); // 把 Vue 应用"挂载"到 id=app 的元素上
+    }).mount("#app");
   </script>
 </body>
 </html>
