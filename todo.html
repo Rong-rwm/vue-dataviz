@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>我的待办清单</title>
+  <script src="vue.global.js"></script>
+  <style>
+    body { font-family: "Microsoft YaHei", sans-serif; max-width: 500px; margin: 40px auto; padding: 20px; }
+    input { padding: 8px; font-size: 16px; width: 250px; }
+    button { padding: 8px 16px; margin-left: 6px; cursor: pointer; }
+    li { margin: 6px 0; }
+    .del { color: #e74c3c; border: none; background: none; cursor: pointer; }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <h1>📝 我的待办清单</h1>
+
+    <!-- v-model：把"输入框"和 newTodo 这个数据"绑"在一起 -->
+    <!-- @keyup.enter：按下回车键时，执行 addTodo -->
+    <input v-model="newTodo" @keyup.enter="addTodo" placeholder="输入待办，按回车添加" />
+    <button @click="addTodo">添加</button>
+
+    <!-- 列表：v-for 遍历 todos，index 是"第几个" -->
+    <ul>
+      <li v-for="(todo, index) in todos">
+        {{ todo }}
+        <button class="del" @click="removeTodo(index)">删除</button>
+      </li>
+    </ul>
+
+    <!-- v-if：列表空的时候显示这句话 -->
+    <p v-if="todos.length === 0">还没有待办，加一条吧～</p>
+
+    <!-- 显示总数 -->
+    <p>共 {{ todos.length }} 条待办</p>
+  </div>
+
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          newTodo: "",               // 输入框里正在打的内容
+          todos: ["导管"]  // 待办列表（数组）
+        };
+      },
+      methods: {
+        addTodo() {
+          // .trim() 去掉首尾空格
+          let text = this.newTodo.trim();
+          // 如果空的，直接返回（什么都不加）
+          if (text === "") return;
+          // .push() 往数组末尾加一个
+          this.todos.push(text);
+          // 清空输入框
+          this.newTodo = "";
+        },
+        removeTodo(index) {
+          // .splice(第几个, 删几个) 从数组里删除元素
+          this.todos.splice(index, 1);
+        }
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>
