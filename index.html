@@ -81,6 +81,12 @@
   <p id="greeting"></p>
   <p id="aboutMe"></p>
 
+  <!-- JS 收尾演示 -->
+  <h2>JS 收尾：箭头函数、数组方法、fetch</h2>
+  <p id="arrowDemo"></p>
+  <p id="mapDemo"></p>
+  <p id="fetchDemo"></p>
+
   <!-- 一个可以点击的链接，href 是跳转地址 -->
   <p>我的 GitHub：
     <a href="https://github.com/Rong-rwm" target="_blank">github.com/Rong-rwm</a>
@@ -159,6 +165,32 @@
     // 用点号 . 取出对象里的某个值
     document.getElementById("aboutMe").innerText =
       me.name + "，方向是" + me.direction + "，主攻" + me.skill + "，喜欢的女孩是" + me.girl;
+
+    // ===== 5. 箭头函数：函数的简写 =====
+    // 老写法：function add(a, b) { return a + b; }
+    // 箭头写法：() => {}，const 和 let 差不多（const 的值不能改）
+    const add = (a, b) => a + b;
+    document.getElementById("arrowDemo").innerText =
+      "箭头函数：2 + 3 = " + add(2, 3);
+
+    // ===== 6. 数组方法 map / filter =====
+    let numbers = [1, 2, 3, 4, 5, 6];
+    // map：把每个元素都"变一下"，得到一个新数组
+    let doubled = numbers.map(n => n * 2);      // [2, 4, 6, 8, 10, 12]
+    // filter：只"留下符合条件的"，得到新数组
+    let big = numbers.filter(n => n > 4);        // [4, 5, 6]
+    document.getElementById("mapDemo").innerText =
+      "map(每个×2)=" + doubled + "，filter(只留>3)=" + big;
+
+    // ===== 7. fetch：去网上要真实数据 =====
+    // fetch(网址) 去要数据；.then 表示"拿到之后做什么"
+    fetch("https://api.github.com/users/Rong-rwm")
+      .then(response => response.json())   // 把返回的数据转成对象
+      .then(data => {
+        // data 就是网上返回的真实数据
+        document.getElementById("fetchDemo").innerText =
+          "GitHub 数据：用户名 " + data.login + "，公开仓库 " + data.public_repos + " 个，粉丝 " + data.followers + " 个";
+      });
   </script>
   <!-- ===== JavaScript 到这里结束 ===== -->
 </body>
