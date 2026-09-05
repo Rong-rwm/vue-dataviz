@@ -72,6 +72,10 @@
 
   </ul>
 
+  <!-- 下面这个列表是"空的"，JS 会用循环自动填满它 -->
+  <h2>用 JS 循环生成的列表</h2>
+  <ul id="skillList"></ul>
+
   <!-- 一个可以点击的链接，href 是跳转地址 -->
   <p>我的 GitHub：
     <a href="https://github.com/Rong-rwm" target="_blank">github.com/Rong-rwm</a>
@@ -108,6 +112,20 @@
       // .innerText 就是"这个元素显示的文字"，= 号是"改成"
       text.innerText = "星沉爱意落幕";
     }
+
+    // ===== 1. 数组：一个能装"一堆东西"的盒子 =====
+    // 用方括号 [] 装，用逗号隔开每一项
+    let skills = ["HTML", "CSS", "JavaScript", "Vue3", "TypeScript","rong"];
+
+    // ===== 2. for 循环：把数组里的东西一个个拿出来 =====
+    let listHtml = "";  // 空字符串，准备往里拼 HTML
+    for (let i = 0; i < skills.length; i++) {
+      // skills[i] = 数组里第 i 个（从 0 开始数）
+      // 把每一行 <li> 拼接到 listHtml 后面
+      listHtml = listHtml + "<li>" + skills[i] + "</li>";
+    }
+    // 把拼好的 HTML 一次性塞进那个空的 <ul> 里
+    document.getElementById("skillList").innerHTML = listHtml;
   </script>
   <!-- ===== JavaScript 到这里结束 ===== -->
 </body>
