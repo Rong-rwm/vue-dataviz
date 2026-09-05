@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Vue3 第一个例子</title>
+  <!-- 加载 Vue3（本地文件，已经帮你下载好了） -->
+  <script src="vue.global.js"></script>
+</head>
+
+<body>
+  <!-- Vue 管的是这个 #app 里面的内容 -->
+  <div id="app">
+    <!-- {{ }} 双花括号 = 显示"数据" -->
+    <h1>{{ message }}</h1>
+
+    <!-- @click = 点击事件（相当于之前的 onclick） -->
+    <button @click="changeMessage">点我改文字</button>
+  </div>
+
+  <script>
+    // 从 Vue 里取出 createApp 这个工具
+    const { createApp } = Vue;
+
+    // 创建一个 Vue 应用
+    createApp({
+      // data() 里放"数据"——重点：这里的值改了，页面会自动更新
+      data() {
+        return {
+          message: "星沉爱意落幕"
+        };
+      },
+      // methods 里放"方法"（函数）
+      methods: {
+        changeMessage() {
+          // 只要改数据，页面自动变！不用 getElementById
+          this.message = "文字被 Vue 自动更新了！";
+        }
+      }
+    }).mount("#app"); // 把 Vue 应用"挂载"到 id=app 的元素上
+  </script>
+</body>
+</html>
